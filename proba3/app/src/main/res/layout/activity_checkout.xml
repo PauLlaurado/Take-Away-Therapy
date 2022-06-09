@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    tools:context=".EfectuarPago">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/detailTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Carrito de la compra"
+            android:textColor="?android:textColorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/detailPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="0"
+            android:textColor="?android:textColorSecondary" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="@string/checkout_item_description"
+            android:textColor="?android:textColorPrimary"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/detailDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="15dp"
+            android:text="Varietat de productes de farmacia"
+            android:textColor="?android:textColorSecondary" />
+
+        <!--
+            TODO Check out Google Pay's brand guidelines to discover all button types and styles:
+            https://developers.google.com/pay/api/android/guides/brand-guidelines#assets
+        -->
+
+
+        <Button
+            android:id="@+id/paybutton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/buy_button_height"
+            android:layout_marginBottom="20dp"
+            android:saveEnabled="false"
+            android:text="Buy"
+            tools:visibility="visible" />
+
+        <RadioGroup
+            android:id="@+id/radiogroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/efectivo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Efectivo" />
+
+            <RadioButton
+                android:id="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Targeta de credito" />
+        </RadioGroup>
+
+    </LinearLayout>
+</ScrollView>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraint_login"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".LogIn">
+
+    <LinearLayout
+        android:id="@+id/linearLayout_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="3dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteY="3dp">
+
+
+        <EditText
+            android:id="@+id/editText_work"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:autofillHints=""
+            android:backgroundTint="@color/white2"
+            android:ems="10"
+            android:hint="email"
+            android:inputType="textEmailAddress"
+            android:textColor="@color/white2"
+            android:textColorHint="@color/white2"
+            android:textColorLink="@color/white2"
+            android:textCursorDrawable="@color/black"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/editText_contact"
+            android:layout_width="319dp"
+            android:layout_height="126dp"
+            android:layout_margin="3dp"
+            android:backgroundTint="@color/white2"
+            android:ems="10"
+            android:hint="Breve explicacion"
+            android:importantForAutofill="no"
+            android:inputType="none"
+            android:textColor="@color/black"
+            android:textColorHint="@color/white2"
+            android:textColorLink="@color/white2"
+            android:textCursorDrawable="@color/white2"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/button_contactus"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:backgroundTint="@color/white"
+            android:text="send"
+            android:textColor="@color/purple_200"
+            app:cornerRadius="0dp" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

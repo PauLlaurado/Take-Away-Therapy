@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/activity_checkout.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/activity_maps.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/activity_my_location.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/admin.xml" value="0.33" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/alert_dialog.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/buy_with_googlepay_button.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/carrito.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/contactus.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/contratarcarrito.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/dashboardinfermero.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/efectuarpago.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/farmacia.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/fragment_dashboard.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/fragment_notifications.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/itemfarmacia.xml" value="0.25" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/login.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/perfil.xml" value="0.33" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/register.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/senderrors.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/viewholdercarrito.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/viewholderinfermers.xml" value="0.33" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/viewholderitempedido.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/viewholderitems.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/layout/viewholderpedido.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/paull/AndroidStudioProjects/proba3/app/src/main/res/menu/menulateral.xml" value="0.18802083333333333" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>

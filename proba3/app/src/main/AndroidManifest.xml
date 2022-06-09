@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.proba3">
+<uses-permission android:name="android.permission.INTERNET"/>
+<!--    <uses-permission android:name="android.permission.CALL_PHONE" />-->
+
+<!--    <uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
+<!--    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />-->
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/farmacia"
+        android:label="@string/app_name"
+        android:usesCleartextTraffic="true"
+        android:roundIcon="@mipmap/farmacia"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Proba3">
+
+        <!--
+             TODO: Before you run your application, you need a Google Maps API key.
+
+             To get one, follow the directions here:
+
+                https://developers.google.com/maps/documentation/android-sdk/get-api-key
+
+             Once you have your API key (it starts with "AIza"), define a new property in your
+             project's local.properties file (e.g. MAPS_API_KEY=Aiza...), and replace the
+             "YOUR_API_KEY" string in this file with "${MAPS_API_KEY}".
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB6ul-kNMgUqqkbHxS8z6OEkDuuxmxj970" />
+
+        <activity
+            android:name=".MapsActivity"
+            android:exported="false"
+            android:label="@string/title_activity_maps" />
+        <!-- This element is required to enable Google Pay in your app. -->
+        <meta-data
+            android:name="com.google.android.gms.wallet.api.enabled"
+            android:value="true" />
+
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Register" />
+        <activity android:name=".Perfil" />
+        <activity android:name=".Send_Errors" />
+        <activity android:name=".Carritodashboard" />
+        <activity android:name=".EfectuarPago" />
+        <activity android:name=".Admin" />
+        <activity android:name=".ContactUs" />
+        <activity android:name=".ContratarCarrito" />
+        <activity android:name=".Dashboardfarmacia" />
+        <activity android:name=".Dashboardinfermero" />
+
+        <activity
+            android:name=".LogIn"
+            android:exported="true"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
