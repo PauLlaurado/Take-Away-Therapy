@@ -7,6 +7,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,6 +19,11 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.stripe.android.PaymentConfiguration;
 import com.stripe.android.paymentsheet.PaymentSheet;
 import com.stripe.android.paymentsheet.PaymentSheetResult;
@@ -27,6 +33,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class EfectuarPago extends AppCompatActivity {
@@ -46,31 +53,67 @@ public class EfectuarPago extends AppCompatActivity {
     private Button gPay;
     String pre;
     String destinopedido;
-
+    private DatabaseReference mDatabase;
+    private ArrayList<Users>userslist=new ArrayList<>();
+    String nombre;
+    Pedido pedido=new Pedido();
+    ArrayList<Medicamentos>medicamentoslist;
 
     @Override
-    protected void onPostCreate(@Nullable Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_checkout);
+
         gPay = findViewById(R.id.paybutton);
 
-//
-//        price = findViewById(R.id.detailPrice);
-//        ArrayList<Medicamentos> medicamentoslist = (ArrayList<Medicamentos>) getIntent().getSerializableExtra("lista");
-//        destinopedido=getIntent().getStringExtra("destino");
-//        preciodouble = getIntent().getDoubleExtra("precio", 0);
-//        pre = String.valueOf(preciodouble);
-//        price.setText(pre + "€");
-//        radioButtonefectivo = findViewById(R.id.efectivo);
-//        radioButtontargeta = findViewById(R.id.card);
+
+        price = findViewById(R.id.detailPrice);
+        medicamentoslist = (ArrayList<Medicamentos>) getIntent().getSerializableExtra("lista");
+        destinopedido=getIntent().getStringExtra("destino");
+        preciodouble = getIntent().getDoubleExtra("precio", 0);
+        nombre=getIntent().getStringExtra("nombre");
+        pre = String.valueOf(preciodouble);
+        price.setText(pre + "€");
+        radioButtonefectivo = findViewById(R.id.efectivo);
+        radioButtontargeta = findViewById(R.id.card);
+
+        mDatabase = FirebaseDatabase.getInstance("https://projecte-73ca7-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
+
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for(DataSnapshot singleSnapshot : snapshot.getChildren()){
+                    Users users=new Users();
+                    users=singleSnapshot.getValue(Users.class);
+                    userslist.add(users);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        for (int i = 0; i < userslist.size(); i++) {
+            if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals(userslist.get(i).getEmail())){
+
+                pedido.setId("0");
+                pedido.setAddress(userslist.get(i).getAdress()+" "+userslist.get(i).getFloor()+" "+userslist.get(i).getDoor());
+            }
+        }
 
         gPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PaymentFlow();
 
                 if (radioButtontargeta.isChecked() == true) {
+                    pedido.setPagado("pagado");
+                    PaymentFlow();
 
                 } else if (radioButtonefectivo.isChecked() == true) {
+                    pedido.setPagado("efectivo");
+
                     Toast.makeText(EfectuarPago.this, "Pedido Realizado, faltara pagar", Toast.LENGTH_SHORT).show();
 
                 }
@@ -78,14 +121,6 @@ public class EfectuarPago extends AppCompatActivity {
             }
 
         });
-    }
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_checkout);
-
-
 
         PaymentConfiguration.init(this, PUBLIC_KEY);
 
@@ -132,11 +167,12 @@ public class EfectuarPago extends AppCompatActivity {
     private void onPaymentResult(PaymentSheetResult paymentSheetResult) {
         if (paymentSheetResult instanceof PaymentSheetResult.Completed) {
             Toast.makeText(this, "Payment succes", Toast.LENGTH_SHORT).show();
-
         if (destinopedido.equals("comprar")){
-
+            pedido.setContractat("comprar");
+            pedido.setArrayListmedicamentos(medicamentoslist);
         }else if(destinopedido.equals("contratar")){
-
+            pedido.setInfermer(nombre);
+            pedido.setContractat("contractat");
         }
 
 //            ArrayList<Medicamentos> medicamentoslist = (ArrayList<Medicamentos>) getIntent().getSerializableExtra("lista");
@@ -190,8 +226,6 @@ public class EfectuarPago extends AppCompatActivity {
 
         RequestQueue requestQueue = Volley.newRequestQueue(EfectuarPago.this);
         requestQueue.add(stringRequest);
-
-
     }
 
     private void getClientSecret(String customerID, String ephericalKey) {
@@ -228,12 +262,17 @@ public class EfectuarPago extends AppCompatActivity {
             @Nullable
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
+                List<Object> paymentMethodTypes =
+                        new ArrayList<>();
+                paymentMethodTypes.add("card");
                 Map<String, String> params = new HashMap<>();
                 params.put("customer", customerID);
                 params.put("amount", pre + "00");
                 params.put("currency", "eur");
                 params.put("automatic_payment_methods[enabled]", "true");
-//                params.put("payment_method", "true");
+                params.put("payment_method", "card");
+
+
                 return params;
             }
         };

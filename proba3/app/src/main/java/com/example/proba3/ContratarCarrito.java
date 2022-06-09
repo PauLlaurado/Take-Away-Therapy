@@ -49,6 +49,7 @@ public class ContratarCarrito extends AppCompatActivity implements AdapterView.O
                 double preciodouble= Double.parseDouble(preciostr);
                 intent.putExtra("precio",preciodouble);
                 intent.putExtra("destino","contratar");
+                intent.putExtra("nombre",nom);
                 startActivity(intent);
             }
         });

@@ -44,10 +44,10 @@ public class NotificationsFragment extends Fragment {
 
         recyclerView = root.findViewById(R.id.recyclerviewcontratar);
 
-        infermeros = new Infermeros("Pau", "10 ", "chico rubia alto");
-        infermeros2 = new Infermeros("Pau", "10 ", "chico rubia alto");
-        infermeros3 = new Infermeros("Pau", "10 ", "chico rubia alto");
-        infermeros4 = new Infermeros("Pau", "10 ", "chico rubia alto");
+        infermeros = new Infermeros("Pau LLaurado Moreno", "10 ", "chico rubia alto");
+        infermeros2 = new Infermeros("Pau Garcia", "10 ", "chico rubia alto");
+        infermeros3 = new Infermeros("Pau Moreno", "10 ", "chico rubia alto");
+        infermeros4 = new Infermeros("Pau ", "10 ", "chico rubia alto");
         infermeros5 = new Infermeros("Pau", "10 ", "chico rubia alto");
         infermeros6 = new Infermeros("Pau", "10 ", "chico rubia alto");
         infermeros7 = new Infermeros("Pau", "10 ", "chico rubia alto");

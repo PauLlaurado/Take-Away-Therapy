@@ -11,7 +11,7 @@
         android:layout_marginStart="1dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="5dp"
-        android:background="#9DDCCF"
+        android:background="#B5CDC8"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
