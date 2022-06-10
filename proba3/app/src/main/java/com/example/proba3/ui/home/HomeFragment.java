@@ -44,7 +44,7 @@ public class HomeFragment extends Fragment {
     private Button buttonhelp;
     private static final int REQUEST_PHONE_CALL = 1;
     private DatabaseReference mDatabase;
-    private ArrayList<Users>usersArrayList=new ArrayList<>();
+    private ArrayList<Users> usersArrayList = new ArrayList<>();
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -56,24 +56,24 @@ public class HomeFragment extends Fragment {
 
         mDatabase = FirebaseDatabase.getInstance("https://projecte-73ca7-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
 
-        textViewname=root.findViewById(R.id.textViewname);
-        buttonhelp=root.findViewById(R.id.helpbutton);
+        textViewname = root.findViewById(R.id.textViewname);
+        buttonhelp = root.findViewById(R.id.helpbutton);
 
 
         mDatabase.addValueEventListener(new ValueEventListener() {
-            @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot singleSnapshot : snapshot.getChildren()) {
-                    Users user=new Users();
-                    user=singleSnapshot.getValue(Users.class);
+                    Users user = new Users();
+                    user = singleSnapshot.getValue(Users.class);
                     usersArrayList.add(user);
 
                 }
-                for (int i = 0; i <usersArrayList.size() ; i++) {
-                    if (usersArrayList.get(i).getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())){
-                        String nombre=usersArrayList.get(i).getName();
-                        nombre=nombre.toUpperCase(Locale.ROOT);
+                for (int i = 0; i < usersArrayList.size(); i++) {
+                    if (usersArrayList.get(i).getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
+                        String nombre = usersArrayList.get(i).getName();
+                        nombre = nombre.toUpperCase(Locale.ROOT);
                         textViewname.setText(nombre);
 
                     }
@@ -91,14 +91,15 @@ public class HomeFragment extends Fragment {
             public void onClick(View v) {
 
                 if (ContextCompat.checkSelfPermission(v.getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE},REQUEST_PHONE_CALL);
-                    Intent callIntent = new Intent(Intent.ACTION_CALL);
-                    callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                    callIntent.setData(Uri.parse("tel:" + "112"));
-                    getActivity().startActivity(callIntent);
-                }
-                else
-                {
+                    ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE}, REQUEST_PHONE_CALL);
+                    if (ContextCompat.checkSelfPermission(v.getContext(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                    } else {
+                        Intent callIntent = new Intent(Intent.ACTION_CALL);
+                        callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        callIntent.setData(Uri.parse("tel:" + "112"));
+                        getActivity().startActivity(callIntent);
+                    }
+                } else {
                     Intent callIntent = new Intent(Intent.ACTION_CALL);
                     callIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     callIntent.setData(Uri.parse("tel:" + "112"));
@@ -110,7 +111,6 @@ public class HomeFragment extends Fragment {
         });
         return root;
     }
-
 
 
     @Override

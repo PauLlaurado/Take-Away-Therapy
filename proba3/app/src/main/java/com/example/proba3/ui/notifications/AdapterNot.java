@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -36,7 +37,8 @@ private ArrayList<Infermeros>infermeroslist;
     public void onBindViewHolder(@NonNull ViewHolderNot holder, int position) {
         holder.nameinfermero.setText(infermeroslist.get(position).getName());
         holder.descripcioninfermero.setText(infermeroslist.get(position).getDesc());
-        holder.preciohora.setText(infermeroslist.get(position).getPrice());
+        holder.preciohora.setText(infermeroslist.get(position).getPrice()+" €/h");
+        holder.imageView.setImageBitmap(infermeroslist.get(0).getBitmap());
     }
 
     @Override
@@ -47,10 +49,11 @@ private ArrayList<Infermeros>infermeroslist;
     public class ViewHolderNot extends RecyclerView.ViewHolder{
         TextView nameinfermero,descripcioninfermero,preciohora;
         Button contratar;
+        ImageView imageView;
 
         public ViewHolderNot(@NonNull View itemView) {
             super(itemView);
-
+            imageView=itemView.findViewById(R.id.imageinfermer);
             nameinfermero=itemView.findViewById(R.id.nameinfermer);
             descripcioninfermero=itemView.findViewById(R.id.descinfermer);
             preciohora=itemView.findViewById(R.id.preciohora);
@@ -61,8 +64,11 @@ private ArrayList<Infermeros>infermeroslist;
                 @Override
                 public void onClick(View v) {
                     Intent intent=new Intent(v.getContext(), ContratarCarrito.class);
+                    String[] precio=preciohora.getText().toString().split(" ");
+
+                    System.out.println(precio[0]);
                     intent.putExtra("nombre",nameinfermero.getText());
-                    intent.putExtra("precio",preciohora.getText());
+                    intent.putExtra("precio",precio[0]);
                     v.getContext().startActivity(intent);
 
                 }

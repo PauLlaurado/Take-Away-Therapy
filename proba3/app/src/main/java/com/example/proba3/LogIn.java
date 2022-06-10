@@ -138,7 +138,7 @@ public class LogIn extends AppCompatActivity {
                 Boolean notuser=false;
                 for (int i = 0; i <infermeroslist.size() ; i++) {
                     if (infermeroslist.get(i).getEmail().equals(editTextemail.getText().toString())&&infermeroslist.get(i).getPassword().equals(editTextpassword.getText().toString())){
-                        Intent intent=new Intent(LogIn.this,Dashboardfarmacia.class);
+                        Intent intent=new Intent(LogIn.this,Dashboardinfermero.class);
                         startActivity(intent);
                         notuser=true;
                         finish();
@@ -147,7 +147,7 @@ public class LogIn extends AppCompatActivity {
                 for (int i = 0; i <farmaciaslist.size() ; i++) {
 
                     if(farmaciaslist.get(i).getEmail().equals(editTextemail.getText().toString())&&farmaciaslist.get(i).getPassword().equals(editTextpassword.getText().toString())){
-                        Intent intent=new Intent(LogIn.this,Dashboardinfermero.class);
+                        Intent intent=new Intent(LogIn.this,Dashboardfarmacia.class);
                         intent.putExtra("email",editTextemail.getText().toString());
                         startActivity(intent);
                         notuser=true;

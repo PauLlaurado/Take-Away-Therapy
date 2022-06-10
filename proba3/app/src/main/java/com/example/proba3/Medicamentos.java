@@ -1,9 +1,12 @@
 package com.example.proba3;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 
 public class Medicamentos implements Serializable {
     public String nombre, decripcion, precio, cantidad;
+    Bitmap image;
 
     public Medicamentos(String name, String descr, String preu, String cant) {
         this.nombre = name;
@@ -12,6 +15,13 @@ public class Medicamentos implements Serializable {
         this.cantidad = cant;
     }
 
+    public Bitmap getImage() {
+        return image;
+    }
+
+    public void setImage(Bitmap image) {
+        this.image = image;
+    }
 
     public Medicamentos() {
     }

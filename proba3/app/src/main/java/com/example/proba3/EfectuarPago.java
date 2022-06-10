@@ -173,6 +173,9 @@ public class EfectuarPago extends AppCompatActivity {
         }else if(destinopedido.equals("contratar")){
             pedido.setInfermer(nombre);
             pedido.setContractat("contractat");
+            String servicio=getIntent().getStringExtra("servicio");
+            pedido.setServicio(servicio);
+
         }
 
 //            ArrayList<Medicamentos> medicamentoslist = (ArrayList<Medicamentos>) getIntent().getSerializableExtra("lista");
@@ -229,27 +232,21 @@ public class EfectuarPago extends AppCompatActivity {
     }
 
     private void getClientSecret(String customerID, String ephericalKey) {
-        Toast.makeText(this, "aqui si", Toast.LENGTH_SHORT).show();
         StringRequest stringRequest = new StringRequest(Request.Method.POST,
                 "https://api.stripe.com/v1/payment_intents",
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(EfectuarPago.this, "aqui si 2", Toast.LENGTH_SHORT).show();
                         try {
-                            Toast.makeText(EfectuarPago.this, "aqui si 3", Toast.LENGTH_SHORT).show();
                             JSONObject object = new JSONObject(response);
                             ClientSecret = object.getString("client_secret");
-                            Toast.makeText(EfectuarPago.this, ClientSecret+"asd ", Toast.LENGTH_SHORT).show();
                         } catch (JSONException e) {
-                            Toast.makeText(EfectuarPago.this, "err", Toast.LENGTH_SHORT).show();
                             e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(EfectuarPago.this, "error2", Toast.LENGTH_SHORT).show();
             }
         }) {
             @Override
@@ -270,7 +267,6 @@ public class EfectuarPago extends AppCompatActivity {
                 params.put("amount", pre + "00");
                 params.put("currency", "eur");
                 params.put("automatic_payment_methods[enabled]", "true");
-                params.put("payment_method", "card");
 
 
                 return params;

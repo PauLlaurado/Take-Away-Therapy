@@ -72,15 +72,21 @@ public class Dashboardfarmacia extends AppCompatActivity {
         adapterpedido=new Adapterpedido(pedidoslist);
         recyclerView.setAdapter(adapterpedido);
 
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(getApplicationContext(), recyclerView ,new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override public void onItemClick(View view, int position) {
+                        pedidoslist.remove(position);
+                        recyclerView.removeViewAt(position);
+                               }
 
-
+                    @Override public void onLongItemClick(View view, int position) {
+                        // do whatever
+                    }
+                })
+        );
     }
 
-    public void deletefirst(){
-        Toast.makeText(Dashboardfarmacia.this, "toast", Toast.LENGTH_SHORT).show();
-        pedidoslist.remove(0);
-        System.out.println("holaquetla");
-    }
+
 
     @Override public void onBackPressed() {
         Intent intent=new Intent(this,LogIn.class);

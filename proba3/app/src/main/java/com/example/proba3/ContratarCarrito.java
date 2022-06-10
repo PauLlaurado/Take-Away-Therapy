@@ -1,7 +1,9 @@
 package com.example.proba3;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class ContratarCarrito extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
@@ -50,6 +53,8 @@ public class ContratarCarrito extends AppCompatActivity implements AdapterView.O
                 intent.putExtra("precio",preciodouble);
                 intent.putExtra("destino","contratar");
                 intent.putExtra("nombre",nom);
+                intent.putExtra("servicio",spinner.getSelectedItem().toString());
+                Toast.makeText(ContratarCarrito.this, spinner.getSelectedItem().toString(), Toast.LENGTH_SHORT).show();
                 startActivity(intent);
             }
         });
@@ -61,9 +66,28 @@ public class ContratarCarrito extends AppCompatActivity implements AdapterView.O
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if (position>2){
-            Toast.makeText(ContratarCarrito.this, "posicio mes gran de 2", Toast.LENGTH_SHORT).show();
+        if (position>5){
+
+            AlertDialog.Builder builder;
+            builder = new AlertDialog.Builder(this);
+            builder.setMessage("Requiere receta medica,tiene receta? ") .setTitle("IMPORTANTE")
+                    .setCancelable(false);
+            builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(ContratarCarrito.this, "Sin receta medica este servicio no se realizara", Toast.LENGTH_SHORT).show();
+                }
+            });
+            builder.show();
+
         }
+
     }
 
     @Override

@@ -1,10 +1,13 @@
 package com.example.proba3.ui.dashboard;
 
+import static com.example.proba3.R.drawable.medicina;
+
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -41,6 +44,7 @@ public class AdapterDash extends RecyclerView.Adapter<AdapterDash.ViewHolderDash
         holder.desctv.setText(medicamentos.get(position).getDecripcion());
         holder.canttv.setText(String.valueOf(medicamentos.get(position).getCantidad()));
         holder.preutv.setText(String.valueOf(medicamentos.get(position).getPrecio()));
+        holder.imageView.setImageBitmap(medicamentos.get(position).getImage());
     }
 
     @Override
@@ -52,6 +56,7 @@ public class AdapterDash extends RecyclerView.Adapter<AdapterDash.ViewHolderDash
 
         TextView nametv, desctv, canttv;
         Button preutv, agregar, rest, comprar;
+        ImageView imageView;
 
         public ViewHolderDash(@NonNull View itemView) {
             super(itemView);
@@ -61,6 +66,9 @@ public class AdapterDash extends RecyclerView.Adapter<AdapterDash.ViewHolderDash
             preutv = itemView.findViewById(R.id.comprar);
             agregar = itemView.findViewById(R.id.agregar);
             rest = itemView.findViewById(R.id.restar);
+            imageView=itemView.findViewById(R.id.imagemedicamento);
+            int i= medicina;
+            imageView.setImageResource(i);
             NumberFormat nf = NumberFormat.getInstance();
             nf.setMaximumFractionDigits(2);
 nf.setMaximumFractionDigits(2);

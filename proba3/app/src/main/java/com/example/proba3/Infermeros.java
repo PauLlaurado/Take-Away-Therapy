@@ -1,8 +1,11 @@
 package com.example.proba3;
 
+import android.graphics.Bitmap;
+
 public class Infermeros {
 
     String name,email,password,price,desc;
+    Bitmap bitmap;
 
     public Infermeros(String name, String email, String password, String price) {
         this.name = name;
@@ -18,6 +21,14 @@ public class Infermeros {
     }
 
     public Infermeros() {
+    }
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
     }
 
     public String getDesc() {

@@ -19,14 +19,14 @@
     <string name="title_activity_maps">MapsActivity</string>
 
     <string-array name="servicios">
+        <item>Selecciona un servicio-------</item>
         <item>Toma de constantes vitales</item>
         <item>Extraccion de sangre</item>
         <item>Muestras de alergia</item>
         <item>Prueba Colesterol</item>
         <item>Recogida de pruebas</item>
-        <item></item>
-        <item>Uranus</item>
-        <item>Neptune</item>
+        <item>Administrar medicacion</item>
+        <item>Curas de heridas importantes</item>
     </string-array>
 
 </resources>

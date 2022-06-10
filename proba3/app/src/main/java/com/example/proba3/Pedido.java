@@ -4,10 +4,18 @@ import java.util.ArrayList;
 
 public class Pedido {
 
-    String contractat,id,pagado,infermer,address;
+    String contractat,id,pagado,infermer,address,servicio;
 ArrayList<Medicamentos>arrayListmedicamentos;
 
     public Pedido() {
+    }
+
+    public String getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
     }
 
     public String getAddress() {
