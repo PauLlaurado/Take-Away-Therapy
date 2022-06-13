@@ -4,16 +4,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.firebase.auth.FirebaseAuth;
+import com.example.proba3.objetos.SendEmail;
 
 public class ContactUs extends AppCompatActivity {
-    private EditText editTextWork,editTextemail;
+    private EditText editTextWork, editTextemail;
     private Button button;
     private String stringEmail, stringReport;
 
@@ -30,10 +29,10 @@ public class ContactUs extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 stringReport = editTextWork.getText().toString();
-                stringEmail=editTextemail.getText().toString();
+                stringEmail = editTextemail.getText().toString();
 
                 Toast.makeText(ContactUs.this, "Misatge enviat", Toast.LENGTH_SHORT).show();
-String mensaje="El usuario: "+stringEmail+" quiere trabajar con nosotros.\nBreve explicacion.\nError: "+stringReport;
+                String mensaje = "El usuario: " + stringEmail + " quiere trabajar con nosotros.\nBreve explicacion.\nError: " + stringReport;
 
                 new SendEmail(ContactUs.this, "takeawaytherapy@gmail.com", "Error", mensaje).execute();
 

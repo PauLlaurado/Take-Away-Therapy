@@ -10,25 +10,26 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.proba3.objetos.Users;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.firestore.auth.User;
 
 import java.util.ArrayList;
 
 public class Perfil extends AppCompatActivity {
 
-    private EditText editTextemail, editTextpass, editTextaddres, editTextfloor, editTextdoor,editTextphone;
+    private EditText editTextemail, editTextpass, editTextaddres, editTextfloor, editTextdoor, editTextphone;
     private Button update;
 
     private DatabaseReference mDatabase;
     private ArrayList<Users> userslist = new ArrayList<>();
     private ArrayList<String> idlist = new ArrayList<>();
     int a = 0;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +40,7 @@ public class Perfil extends AppCompatActivity {
         editTextaddres = findViewById(R.id.addresupdate);
         editTextfloor = findViewById(R.id.floorupdate);
         editTextdoor = findViewById(R.id.doorupdate);
-        editTextphone=findViewById(R.id.phoneupdate);
+        editTextphone = findViewById(R.id.phoneupdate);
         update = findViewById(R.id.update);
 
         mDatabase = FirebaseDatabase.getInstance("https://projecte-73ca7-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
@@ -70,7 +71,7 @@ public class Perfil extends AppCompatActivity {
                     editTextemail.setText(FirebaseAuth.getInstance().getCurrentUser().getEmail());
                     for (int i = 0; i < userslist.size(); i++) {
                         if (userslist.get(i).getEmail().equals(FirebaseAuth.getInstance().getCurrentUser().getEmail())) {
-                            a=i;
+                            a = i;
                             editTextpass.setText(userslist.get(i).getPassword());
                             editTextaddres.setText(userslist.get(i).getAdress());
                             editTextfloor.setText(userslist.get(i).getFloor());
@@ -85,7 +86,6 @@ public class Perfil extends AppCompatActivity {
                     editTextfloor.setEnabled(true);
                     editTextdoor.setEnabled(true);
                     editTextphone.setEnabled(true);
-
 
 
                     update.setText("Guardar");

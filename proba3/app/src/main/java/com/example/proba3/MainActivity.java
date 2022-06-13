@@ -23,30 +23,30 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater=getMenuInflater();
-        menuInflater.inflate(R.menu.menulateral,menu);
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menulateral, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.profile:
-               Intent intent=new Intent(MainActivity.this,Perfil.class);
+                Intent intent = new Intent(MainActivity.this, Perfil.class);
                 startActivity(intent);
-break;
+                break;
             case R.id.map:
 
-                 intent=new Intent(MainActivity.this,MapsActivity.class);
-                 startActivity(intent);
+                intent = new Intent(MainActivity.this, MapsActivity.class);
+                startActivity(intent);
                 break;
             case R.id.errors:
-                intent=new Intent(MainActivity.this,Send_Errors.class);
+                intent = new Intent(MainActivity.this, Send_Errors.class);
                 startActivity(intent);
-break;
+                break;
             case R.id.logout:
                 FirebaseAuth.getInstance().signOut();
-                intent=new Intent(MainActivity.this,LogIn.class);
+                intent = new Intent(MainActivity.this, LogIn.class);
                 startActivity(intent);
 
                 break;
@@ -78,9 +78,11 @@ break;
 
 
     }
-    @Override public void onBackPressed() {
+
+    @Override
+    public void onBackPressed() {
         FirebaseAuth.getInstance().signOut();
-      Intent  intent=new Intent(MainActivity.this,LogIn.class);
+        Intent intent = new Intent(MainActivity.this, LogIn.class);
         startActivity(intent);
     }
 

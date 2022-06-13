@@ -1,5 +1,6 @@
 package com.example.proba3;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.proba3.objetos.Medicamentos;
+import com.example.proba3.objetos.Pedido;
+import com.example.proba3.objetos.Users;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -87,6 +91,13 @@ public class EfectuarPago extends AppCompatActivity {
                     users=singleSnapshot.getValue(Users.class);
                     userslist.add(users);
                 }
+                for (int i = 0; i < userslist.size(); i++) {
+                    if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals(userslist.get(i).getEmail())){
+
+                        pedido.setId("0");
+                        pedido.setAddress(userslist.get(i).getAdress()+" "+userslist.get(i).getFloor()+" "+userslist.get(i).getDoor());
+                    }
+                }
             }
 
             @Override
@@ -95,13 +106,7 @@ public class EfectuarPago extends AppCompatActivity {
             }
         });
 
-        for (int i = 0; i < userslist.size(); i++) {
-            if (FirebaseAuth.getInstance().getCurrentUser().getEmail().equals(userslist.get(i).getEmail())){
 
-                pedido.setId("0");
-                pedido.setAddress(userslist.get(i).getAdress()+" "+userslist.get(i).getFloor()+" "+userslist.get(i).getDoor());
-            }
-        }
 
         gPay.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,12 +114,15 @@ public class EfectuarPago extends AppCompatActivity {
 
                 if (radioButtontargeta.isChecked() == true) {
                     pedido.setPagado("pagado");
-                    PaymentFlow();
+//                    PaymentFlow();
+                    Toast.makeText(EfectuarPago.this, "Pedido Realizado, pagado", Toast.LENGTH_SHORT).show();
 
+                    onPaymentResult2();
                 } else if (radioButtonefectivo.isChecked() == true) {
-                    pedido.setPagado("efectivo");
 
                     Toast.makeText(EfectuarPago.this, "Pedido Realizado, faltara pagar", Toast.LENGTH_SHORT).show();
+                    onPaymentResult2();
+
 
                 }
 
@@ -136,7 +144,6 @@ public class EfectuarPago extends AppCompatActivity {
                         try {
                             JSONObject object = new JSONObject(response);
                             customerID = object.getString("id");
-                            Toast.makeText(EfectuarPago.this, customerID, Toast.LENGTH_SHORT).show();
 
                             getEphericalKey(customerID);
                         } catch (JSONException e) {
@@ -178,14 +185,31 @@ public class EfectuarPago extends AppCompatActivity {
 
         }
 
-//            ArrayList<Medicamentos> medicamentoslist = (ArrayList<Medicamentos>) getIntent().getSerializableExtra("lista");
-//            Toast.makeText(this, medicamentoslist.toString(), Toast.LENGTH_SHORT).show();
 
-//            Intent intent = new Intent(this, MainActivity.class);
-//            startActivity(intent);
         } else {
             Toast.makeText(this, "Fail payment", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private void onPaymentResult2(){
+        mDatabase = FirebaseDatabase.getInstance("https://projecte-73ca7-default-rtdb.europe-west1.firebasedatabase.app/").getReference("Users");
+
+        if (destinopedido.equals("comprar")){
+            pedido.setContractat("comprar");
+            pedido.setArrayListmedicamentos(medicamentoslist);
+        }else if(destinopedido.equals("contratar")){
+            pedido.setInfermer(nombre);
+            pedido.setContractat("contractat");
+            String servicio=getIntent().getStringExtra("servicio");
+            pedido.setServicio(servicio);
+
+        }
+        mDatabase.push().setValue(pedido);
+        Intent intent=new Intent(EfectuarPago.this,MainActivity.class);
+        startActivity(intent);
+
+
+
     }
 
     private void getEphericalKey(String customerID) {
@@ -197,7 +221,6 @@ public class EfectuarPago extends AppCompatActivity {
                         try {
                             JSONObject object = new JSONObject(response);
                             EphericalKey = object.getString("id");
-                            Toast.makeText(EfectuarPago.this, EphericalKey, Toast.LENGTH_SHORT).show();
 
                             getClientSecret(customerID, EphericalKey);
                         } catch (JSONException e) {

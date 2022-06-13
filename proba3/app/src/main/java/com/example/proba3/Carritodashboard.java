@@ -12,6 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.proba3.adapter.AdapterCarrito;
+import com.example.proba3.objetos.Medicamentos;
+
 import java.util.ArrayList;
 
 public class Carritodashboard extends AppCompatActivity {
@@ -40,7 +43,6 @@ public class Carritodashboard extends AppCompatActivity {
 
         }
         preciototal.setText(String.valueOf(preciototalint));
-        System.out.println(medicamentoslist.toString());
         adapterCarrito = new AdapterCarrito(medicamentoslist);
         recyclerView.setAdapter(adapterCarrito);
 

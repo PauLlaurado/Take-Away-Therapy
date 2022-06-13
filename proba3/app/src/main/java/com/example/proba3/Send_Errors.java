@@ -8,14 +8,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.proba3.objetos.SendEmail;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Send_Errors extends AppCompatActivity {
 
-    private EditText  editTextError;
+    private EditText editTextError;
     private TextView tvemail;
     private Button buttonSendError;
     private String stringEmail, stringReport;
@@ -39,14 +39,11 @@ public class Send_Errors extends AppCompatActivity {
                 stringReport = editTextError.getText().toString();
 
 
-                    Toast.makeText(Send_Errors.this, "Error enviat", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Send_Errors.this, "Error enviat", Toast.LENGTH_SHORT).show();
 
-                    String mensaje="El usuario: "+FirebaseAuth.getInstance().getCurrentUser().getEmail()+" quiere reportar un error.\nError: "+stringReport;
+                String mensaje = "El usuario: " + FirebaseAuth.getInstance().getCurrentUser().getEmail() + " quiere reportar un error.\nError: " + stringReport;
 
                 new SendEmail(Send_Errors.this, "takeawaytherapy@gmail.com", "Error", mensaje).execute();
-
-
-
 
 
             }
